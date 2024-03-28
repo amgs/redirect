@@ -1,0 +1,4 @@
+data/
+.docker
+__pycache__/
+.venv/
