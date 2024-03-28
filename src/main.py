@@ -6,14 +6,20 @@ from fastapi.responses import RedirectResponse, StreamingResponse
 from starlette import status
 from pymongo import MongoClient
 import pandas as pd
+import os
 
+MONGO_USR=os.environ["MONGO_USR"]
+MONGO_PWD=os.environ["MONGO_PWD"]
+MONGO_HOST=os.environ["MONGO_HOST"]
+MONGO_APP_NAME=os.environ["MONGO_APP_NAME"]
+
+MONGO_URI = f"mongodb+srv://{MONGO_USR}:{MONGO_PWD}@{MONGO_HOST}/?retryWrites=true&w=majority&appName={MONGO_APP_NAME}"
 
 app = FastAPI()
 
 
 def get_collection(database: str, collection: str):
-    URI = "mongodb://root:foobar@a_brasileira-mongo-1"
-    client = MongoClient(URI)
+    client = MongoClient(MONGO_URI)
     db = client[database]
     return db[collection]
 
