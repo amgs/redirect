@@ -5,9 +5,7 @@
 left to right direction
 
 cloud "Render Cloud" as Render {
-    component "Redirect App" as App {
-
-    }
+    component "Redirect App" as App
 }
 
 cloud "MongoDB Atlas Cloud" as Atlas {
