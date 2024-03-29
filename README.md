@@ -32,6 +32,6 @@ The service is deployed on [Render](https://render.com/) and uses a [MongoDB Atl
 
 The service is kept alive using [cron-job.org](https://cron-job.org/).
 
-### Arquitecture
+### Architecture
 
 ![Architecture](images/architecture.png)
