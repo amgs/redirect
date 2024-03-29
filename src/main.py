@@ -7,11 +7,14 @@ from starlette import status
 from pymongo import MongoClient
 import pandas as pd
 import os
+from dotenv import load_dotenv
 
-MONGO_USR=os.environ["MONGO_USR"]
-MONGO_PWD=os.environ["MONGO_PWD"]
-MONGO_HOST=os.environ["MONGO_HOST"]
-MONGO_APP_NAME=os.environ["MONGO_APP_NAME"]
+load_dotenv()
+
+MONGO_USR=os.getenv("MONGO_USR")
+MONGO_PWD=os.getenv("MONGO_PWD")
+MONGO_HOST=os.getenv("MONGO_HOST")
+MONGO_APP_NAME=os.getenv("MONGO_APP_NAME")
 
 MONGO_URI = f"mongodb+srv://{MONGO_USR}:{MONGO_PWD}@{MONGO_HOST}/?retryWrites=true&w=majority&appName={MONGO_APP_NAME}"
 
