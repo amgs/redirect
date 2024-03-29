@@ -17,7 +17,7 @@ To download a CSV file with the current data for project `PROJECT`, you can visi
 
 ## How it works
 
-The service is build with FastAPI and uses MongoDB to store the data. The service has three endpoints:
+The service is built in Python with [FastAPI](https://fastapi.tiangolo.com/) and uses [MongoDB](https://www.mongodb.com/) to store the data. The service has three endpoints:
 
 - `/`: Redirects the user to the URL provided in the `url` parameter and logs the click in the database.
   - Parameter `project`: The name of the project you are working on.
@@ -35,3 +35,33 @@ The service is kept alive using [cron-job.org](https://cron-job.org/).
 ### Architecture
 
 ![Architecture](images/architecture.png)
+
+## Development
+
+To run a development environment using [Docker](https://www.docker.com/), execute:
+
+```bash
+docker-compose up --build --force-recreate --renew-anon-volumes
+```
+
+The service will be available at [http://localhost:8000](http://localhost:8000).
+
+Try it with curl with:
+
+```bash
+curl http://localhost:8000/?project=test&url=https://www.google.com
+```
+
+Check the new record with:
+
+```bash
+curl http://localhost:8000/json?project=test
+```
+
+or
+
+```bash
+curl http://localhost:8000/csv?project=test
+```
+
+[Mongo Express](https://github.com/mongo-express/mongo-express) will be available at [http://localhost:8081](http://localhost:8081).
