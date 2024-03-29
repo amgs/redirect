@@ -1,11 +1,37 @@
-https://console.cron-job.org/jobs
+# A tool to measure user engagement on a study
 
-https://cloud.mongodb.com/
+This tool is a simple way to measure user engagement on a study. It uses a redirect service to track the number of clicks on a link. The tool is designed to be used with with any link.
 
-https://dashboard.render.com/
+## How to use
 
-https://redirect-7oww.onrender.com/?project=<PROJECT>&url=<URL>
+The tool is deployed at [https://redirect-7oww.onrender.com/](https://redirect-7oww.onrender.com/). To use the tool, you need to provide the following parameters:
 
-https://redirect-7oww.onrender.com/json?project=<PROJECT>
+- `project`: The name of the project you are working on. This is used to identify the project in the database.
+- `url`: The URL you want to track.
 
-https://redirect-7oww.onrender.com/csv?project=<PROJECT>
+The tool will redirect the user to the URL provided in the `url` parameter and log the click in the database.
+
+To download a CSV file with the current data for project `PROJECT`, you can visit the following URL:
+
+[https://redirect-7oww.onrender.com/csv?project=PROJECT](https://redirect-7oww.onrender.com/csv?project=PROJECT)
+
+## How it works
+
+The service is build with FastAPI and uses MongoDB to store the data. The service has three endpoints:
+
+- `/`: Redirects the user to the URL provided in the `url` parameter and logs the click in the database.
+  - Parameter `project`: The name of the project you are working on.
+  - Parameter `url`: The URL you want to track.
+- `/json`: Returns the data in JSON format.
+  - Parameter `project`: The name of the project you are working on.
+- `/csv`: Returns the data in CSV format.
+  - Parameter `project`: The name of the project you are working on.
+- `ping`: A simple endpoint to check if the service is running.
+
+The service is deployed on [Render](https://render.com/) and uses a [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) database.
+
+The service is kept alive using [cron-job.org](https://cron-job.org/).
+
+### Arquitecture
+
+![Architecture](images/architecture.png)

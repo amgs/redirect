@@ -1,0 +1,41 @@
+@startuml architecture
+!define LIGHTBLUE
+!includeurl https://gist.githubusercontent.com/amgs/de57560012a8a5f0e4240f392b678a40/raw/c903c6b4f16b60b5eef3248f093497faae378f51/style.puml
+
+left to right direction
+
+cloud "Render Clound" as Render {
+    component "Redirect App" as App {
+
+    }
+}
+
+cloud "MongoDB Atlas" as Atlas {
+    database Redirect {
+        map Records{
+            id => ObjectId
+            url => String
+            project => String
+            datetime => Datetime
+            id_address => String
+            user_agent => String
+        }
+    }
+}
+
+node "Study/Experiment" as StudyApp {
+    component "Link to Webpage" as Link
+}
+
+artifact Webpage
+actor User
+User ..> Link : 1. Click/touch link to webpage
+StudyApp .> User : 2. Get parametrized link
+User .> App : 3. Access parametrized link
+App .> Records : 4. Update database
+App ..> User : 5. Return clean link to webpage
+User .> Webpage : 6. Access webpage
+
+StudyApp -[hidden]- Webpage
+Render -[hidden]down- Records
+@enduml

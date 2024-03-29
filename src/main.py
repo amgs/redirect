@@ -10,14 +10,21 @@ from fastapi.responses import RedirectResponse, StreamingResponse
 from pymongo import MongoClient
 from starlette import status
 
-load_dotenv()
 
+ENVIRONMENT = os.environ.get("ENVIRONMENT", "development")
+
+load_dotenv(f".env.{ENVIRONMENT}")
 MONGO_USR = os.getenv("MONGO_USR")
 MONGO_PWD = os.getenv("MONGO_PWD")
 MONGO_HOST = os.getenv("MONGO_HOST")
 MONGO_APP_NAME = os.getenv("MONGO_APP_NAME")
 
-MONGO_URI = f"mongodb+srv://{MONGO_USR}:{MONGO_PWD}@{MONGO_HOST}/?retryWrites=true&w=majority&appName={MONGO_APP_NAME}"
+if ENVIRONMENT == "production":
+    MONGO_URI = f"mongodb+srv://{MONGO_USR}:{MONGO_PWD}@{MONGO_HOST}/?retryWrites=true&w=majority&appName={MONGO_APP_NAME}"
+elif ENVIRONMENT == "development":
+    MONGO_URI = f"mongodb://{MONGO_USR}:{MONGO_PWD}@{MONGO_HOST}"
+else:
+    raise ValueError("Invalid Environment")
 
 app = FastAPI()
 
