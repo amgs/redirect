@@ -31,8 +31,8 @@ User ..> Link : 1. Click/touch link to webpage
 StudyApp .> User : 2. Get parametrized link
 User .> App : 3. Access parametrized link
 App .> Records : 4. Update database
-App ..> User : 5. Return clean link to webpage
-User .> Webpage : 6. Access webpage
+App ..> User : 5. Return clean link to webpage as redirect
+User .> Webpage : 6. Automatically redirected to the webpage
 
 StudyApp -[hidden]- Webpage
 Render -[hidden]down- Records
