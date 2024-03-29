@@ -26,23 +26,25 @@ def get_collection(database: str, collection: str):
     db = client[database]
     return db[collection]
 
-def get_data():
+def get_data(project: str=""):
     records = get_collection("redirect", "records")
-    cursor = records.find({}, {"_id": 0, "timestamp": 1, "ip_address": 1, "url": 1})
-    data = [
-        {
-            "timestamp": record["timestamp"],
-            "ip_address": record["ip_address"],
-            "url": record["url"],
-        }
-        for record in cursor
-    ]
+    data = []
+    if project != "":
+        cursor = records.find({"project": project}, {"_id": 0, "timestamp": 1, "ip_address": 1, "url": 1})
+        data = [
+            {
+                "timestamp": record["timestamp"],
+                "ip_address": record["ip_address"],
+                "url": record["url"],
+            }
+            for record in cursor
+        ]
     return data
 
 
 @app.get("/mongo")
-async def mongo():
-    return get_data();
+async def mongo(project: str=""):
+    return get_data(project)
 
 
 @app.get("/csv", response_class=StreamingResponse)
@@ -54,14 +56,18 @@ async def csv():
     response.headers["Content-Disposition"] = "attachment; filename=data.csv"
     return response
 
+@app.get("/ping")
+def ping():
+    return {"ping": "pong"}
 
 @app.get("/")
-async def index(request: Request, url: str = ""):
+async def index(request: Request, project:str="", url: str = ""):
     current_time = datetime.datetime.now()
     ip_address = request.client.host
     user_agent = request.headers.get("user-agent", "unknown")
     record = {
         "url": url,
+        "project": project,
         "timestamp": current_time,
         "user_agent": user_agent,
         "ip_address": ip_address,
