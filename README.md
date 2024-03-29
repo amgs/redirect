@@ -1,15 +1,15 @@
 # A tool to measure user engagement on a study
 
-This tool is a simple way to measure user engagement on a study. It uses a redirect service to track the number of clicks on a link. The tool is designed to be used with with any link.
+This tool is a simple way to measure user engagement on a study. It uses a redirect service to track the number of clicks on a link. The service is designed to be used with with any link.
 
 ## How to use
 
-The tool is deployed at [https://redirect-7oww.onrender.com/](https://redirect-7oww.onrender.com/). To use the tool, you need to provide the following parameters:
+The service is deployed at [https://redirect-7oww.onrender.com/](https://redirect-7oww.onrender.com/). To use the service, you need to provide the following parameters:
 
 - `project`: The name of the project you are working on. This is used to identify the project in the database.
 - `url`: The URL you want to track.
 
-The tool will redirect the user to the URL provided in the `url` parameter and log the click in the database.
+The service will redirect the user to the URL provided in the `url` parameter and log the click in the database.
 
 To download a CSV file with the current data for project `PROJECT`, you can visit the following URL:
 
