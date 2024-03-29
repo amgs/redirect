@@ -48,8 +48,8 @@ async def mongo(project: str=""):
 
 
 @app.get("/csv", response_class=StreamingResponse)
-async def csv():
-    df = pd.DataFrame(get_data())
+async def csv(project: str=""):
+    df = pd.DataFrame(get_data(project))
     stream = io.StringIO()
     df.to_csv(stream, index=False)
     response = StreamingResponse(iter([stream.getvalue()]), media_type="text/csv")
