@@ -4,13 +4,13 @@
 
 left to right direction
 
-cloud "Render Clound" as Render {
+cloud "Render Cloud" as Render {
     component "Redirect App" as App {
 
     }
 }
 
-cloud "MongoDB Atlas" as Atlas {
+cloud "MongoDB Atlas Cloud" as Atlas {
     database Redirect {
         map Records{
             id => ObjectId
