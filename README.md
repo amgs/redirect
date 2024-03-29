@@ -2,18 +2,9 @@
 
 This tool is a simple way to measure user engagement on a study. It uses a redirect service to track the number of clicks on a link. The service is designed to be used with with any link.
 
-## How to use
-
-To use the service, you need to provide the following parameters:
-
-- `project`: The name of the project you are working on. This is used to identify the project in the database.
-- `url`: The URL you want to track.
-
-The service will redirect the user to the URL provided in the `url` parameter and log the click in the database.
-
 ## How it works
 
-The service is built in Python with [FastAPI](https://fastapi.tiangolo.com/) and uses [MongoDB](https://www.mongodb.com/) to store the data. The service has three endpoints:
+The service is built in Python with [FastAPI](https://fastapi.tiangolo.com/) and uses [MongoDB](https://www.mongodb.com/) to store the data. It has three endpoints:
 
 - `/`: Redirects the user to the URL provided in the `url` parameter and logs the click in the database.
   - Parameter `project`: The name of the project you are working on.
@@ -29,6 +20,8 @@ The service is deployed on [Render](https://render.com/) and uses a [MongoDB Atl
 The service is kept alive using [cron-job.org](https://cron-job.org/).
 
 ### Architecture
+
+Considering [Render](https://render.com/) as the cloud provider and [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) as the database provider, the architecture is as follows:
 
 ![Architecture](images/architecture.png)
 
