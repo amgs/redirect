@@ -4,7 +4,7 @@ This tool is a simple way to measure user engagement on a study. It uses a redir
 
 ## How it works
 
-The service is built in Python with [FastAPI](https://fastapi.tiangolo.com/) and uses [MongoDB](https://www.mongodb.com/) to store the data. It has three endpoints:
+The service is built in Python with [FastAPI](https://fastapi.tiangolo.com/) and uses [MongoDB](https://www.mongodb.com/) to store the data. It has the following endpoints:
 
 - `/`: Redirects the user to the URL provided in the `url` parameter and logs the click in the database.
   - Parameter `project`: The name of the project you are working on.
