@@ -26,7 +26,7 @@ The service is build with FastAPI and uses MongoDB to store the data. The servic
   - Parameter `project`: The name of the project you are working on.
 - `/csv`: Returns the data in CSV format.
   - Parameter `project`: The name of the project you are working on.
-- `ping`: A simple endpoint to check if the service is running.
+- `/ping`: A simple endpoint to check if the service is running.
 
 The service is deployed on [Render](https://render.com/) and uses a [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) database.
 
