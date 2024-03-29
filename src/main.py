@@ -42,8 +42,8 @@ def get_data(project: str=""):
     return data
 
 
-@app.get("/mongo")
-async def mongo(project: str=""):
+@app.get("/json")
+async def json(project: str=""):
     return get_data(project)
 
 
